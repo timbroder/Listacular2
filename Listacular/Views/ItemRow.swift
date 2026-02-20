@@ -11,7 +11,12 @@ struct ItemRow: View {
             itemTypeIcon
                 .foregroundStyle(item.isCompleted ? .secondary : .primary)
 
-            if showRichText {
+            if item.itemType == .heading {
+                TextField("Heading", text: $item.text)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .onSubmit { onSubmit() }
+            } else if showRichText {
                 TextField("Item", text: $item.text)
                     .strikethrough(item.isCompleted)
                     .foregroundStyle(item.isCompleted ? .secondary : .primary)
@@ -52,6 +57,9 @@ struct ItemRow: View {
     @ViewBuilder
     private var itemTypeIcon: some View {
         switch item.itemType {
+        case .heading:
+            Color.clear
+                .frame(width: 4, height: 20)
         case .plain:
             Color.clear
                 .frame(width: 4, height: 20)

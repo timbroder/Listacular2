@@ -12,6 +12,8 @@ enum PlainTextSerializer {
             let indent = String(repeating: "\t", count: item.indentLevel)
             let prefix: String
             switch item.itemType {
+            case .heading:
+                prefix = "# "
             case .plain:
                 prefix = ""
             case .bullet:
@@ -35,7 +37,10 @@ enum PlainTextSerializer {
 
             // Determine item type from prefix
             let itemType: ItemType
-            if content.hasPrefix("- ") {
+            if content.hasPrefix("# ") {
+                itemType = .heading
+                content = String(content.dropFirst(2))
+            } else if content.hasPrefix("- ") {
                 itemType = .checkbox
                 content = String(content.dropFirst(2))
             } else if content.hasPrefix("* ") {

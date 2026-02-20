@@ -18,6 +18,8 @@ enum MarkdownSerializer {
                 line = "- \(check) \(item.text)"
             case .bullet:
                 line = "- \(item.text)"
+            case .heading:
+                line = "## \(item.text)"
             case .plain:
                 line = item.text
             }
@@ -61,10 +63,10 @@ enum MarkdownSerializer {
                 return ListItem(text: content, itemType: .bullet, indentLevel: indentLevel)
             }
 
-            // Header or plain text
+            // Header → heading type
             if content.hasPrefix("#") {
-                // Strip heading markers but keep as plain text
                 content = content.drop(while: { $0 == "#" }).trimmingCharacters(in: .whitespaces)
+                return ListItem(text: content, itemType: .heading, indentLevel: indentLevel)
             }
 
             return ListItem(text: content, itemType: .plain, indentLevel: indentLevel)

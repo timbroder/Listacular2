@@ -126,6 +126,7 @@ struct DocumentEditorView: View {
         Button { indentFocusedItem() } label: { Image(systemName: "increase.indent") }
         Button { outdentFocusedItem() } label: { Image(systemName: "decrease.indent") }
         Divider()
+        Button { setFocusedItemType(.heading) } label: { Image(systemName: "textformat.size.larger") }
         Button { setFocusedItemType(.plain) } label: { Image(systemName: "text.alignleft") }
         Button { setFocusedItemType(.bullet) } label: { Image(systemName: "list.bullet") }
         Button { setFocusedItemType(.checkbox) } label: { Image(systemName: "checklist") }

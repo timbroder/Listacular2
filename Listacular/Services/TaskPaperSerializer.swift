@@ -18,6 +18,8 @@ enum TaskPaperSerializer {
                 line = "- \(item.text)\(done)"
             case .bullet:
                 line = "* \(item.text)"
+            case .heading:
+                line = "\(item.text):"
             case .plain:
                 line = item.text
             }
@@ -41,8 +43,9 @@ enum TaskPaperSerializer {
                 itemType = .bullet
                 content = String(content.dropFirst(2))
             } else if content.hasSuffix(":") && !content.contains("@") {
-                // TaskPaper project header — treat as plain text
-                itemType = .plain
+                // TaskPaper project header — treat as heading
+                itemType = .heading
+                content = String(content.dropLast())
             } else {
                 itemType = .plain
             }
