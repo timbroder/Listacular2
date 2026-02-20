@@ -16,6 +16,9 @@ packages:
   SwiftyDropbox:
     url: https://github.com/dropbox/SwiftyDropbox.git
     from: "10.0.0"
+  SnapshotTesting:
+    url: https://github.com/pointfreeco/swift-snapshot-testing.git
+    from: "1.17.0"
 targets:
   Listacular:
     type: application
@@ -55,3 +58,29 @@ targets:
           - CFBundleURLSchemes:
               - "listacular"
             CFBundleURLName: "Listacular"
+  ListacularTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ListacularTests
+    dependencies:
+      - target: Listacular
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.taco23.listacular.tests
+        SWIFT_STRICT_CONCURRENCY: complete
+        GENERATE_INFOPLIST_FILE: YES
+  ListacularSnapshotTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ListacularSnapshotTests
+    dependencies:
+      - target: Listacular
+      - package: SnapshotTesting
+        product: SnapshotTesting
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.taco23.listacular.snapshottests
+        SWIFT_STRICT_CONCURRENCY: complete
+        GENERATE_INFOPLIST_FILE: YES
