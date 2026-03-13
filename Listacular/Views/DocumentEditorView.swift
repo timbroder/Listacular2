@@ -79,20 +79,6 @@ struct DocumentEditorView: View {
                         Label("Paste as Items", systemImage: "doc.on.clipboard")
                     }
                     Divider()
-                    if document.items.contains(where: { $0.itemType == .checkbox && !$0.isCompleted }) {
-                        Button {
-                            store.setAllCompleted(true, in: document)
-                        } label: {
-                            Label("Mark All Complete", systemImage: "checkmark.circle.fill")
-                        }
-                    }
-                    if document.items.contains(where: { $0.itemType == .checkbox && $0.isCompleted }) {
-                        Button {
-                            store.setAllCompleted(false, in: document)
-                        } label: {
-                            Label("Uncheck All", systemImage: "circle")
-                        }
-                    }
                     Button(role: .destructive) {
                         store.removeCompleted(from: document)
                     } label: {
@@ -104,6 +90,21 @@ struct DocumentEditorView: View {
                 } primaryAction: {
                     let newItem = store.addItem(to: document)
                     focusedItemID = newItem.id
+                }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                if allChecked {
+                    Button {
+                        store.setAllCompleted(false, in: document)
+                    } label: {
+                        Label("Uncheck All", systemImage: "checkmark.circle.fill")
+                    }
+                } else {
+                    Button {
+                        store.setAllCompleted(true, in: document)
+                    } label: {
+                        Label("Mark All Complete", systemImage: "circle")
+                    }
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
@@ -131,6 +132,11 @@ struct DocumentEditorView: View {
                 store.setDueDate(date, for: item, in: document)
             }
         }
+    }
+
+    private var allChecked: Bool {
+        let checkboxes = document.items.filter { $0.itemType == .checkbox }
+        return !checkboxes.isEmpty && checkboxes.allSatisfy(\.isCompleted)
     }
 
     // MARK: - Keyboard Accessory Row
