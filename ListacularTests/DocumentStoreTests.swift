@@ -188,6 +188,32 @@ struct DocumentStoreTests {
         #expect(doc.items[0].id == item2.id)
     }
 
+    @Test("setAllCompleted marks all checkboxes complete")
+    func setAllCompleted() {
+        let store = DocumentStore()
+        let doc = store.createDocument(title: "Test")
+        _ = store.addItem(to: doc, itemType: .checkbox)
+        _ = store.addItem(to: doc, itemType: .checkbox)
+        _ = store.addItem(to: doc, itemType: .heading)
+        store.setAllCompleted(true, in: doc)
+        #expect(doc.items[0].isCompleted == true)
+        #expect(doc.items[1].isCompleted == true)
+        #expect(doc.items[2].isCompleted == false) // headings unaffected
+    }
+
+    @Test("setAllCompleted unchecks all checkboxes")
+    func setAllUncompleted() {
+        let store = DocumentStore()
+        let doc = store.createDocument(title: "Test")
+        let item1 = store.addItem(to: doc, itemType: .checkbox)
+        let item2 = store.addItem(to: doc, itemType: .checkbox)
+        store.toggleComplete(item1, in: doc)
+        store.toggleComplete(item2, in: doc)
+        store.setAllCompleted(false, in: doc)
+        #expect(doc.items[0].isCompleted == false)
+        #expect(doc.items[1].isCompleted == false)
+    }
+
     @Test("pasteItems adds multiple items from text")
     func pasteItems() {
         let store = DocumentStore()

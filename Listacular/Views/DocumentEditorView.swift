@@ -79,6 +79,20 @@ struct DocumentEditorView: View {
                         Label("Paste as Items", systemImage: "doc.on.clipboard")
                     }
                     Divider()
+                    if document.items.contains(where: { $0.itemType == .checkbox && !$0.isCompleted }) {
+                        Button {
+                            store.setAllCompleted(true, in: document)
+                        } label: {
+                            Label("Mark All Complete", systemImage: "checkmark.circle.fill")
+                        }
+                    }
+                    if document.items.contains(where: { $0.itemType == .checkbox && $0.isCompleted }) {
+                        Button {
+                            store.setAllCompleted(false, in: document)
+                        } label: {
+                            Label("Uncheck All", systemImage: "circle")
+                        }
+                    }
                     Button(role: .destructive) {
                         store.removeCompleted(from: document)
                     } label: {

@@ -130,6 +130,16 @@ final class DocumentStore {
 
     // MARK: - Bulk Actions
 
+    func setAllCompleted(_ completed: Bool, in document: ListDocument) {
+        for idx in document.items.indices {
+            if document.items[idx].itemType == .checkbox {
+                document.items[idx].isCompleted = completed
+            }
+        }
+        document.modifiedAt = .now
+        Task { await saveToDisk(document) }
+    }
+
     func removeCompleted(from document: ListDocument) {
         let completedIDs = document.items.filter(\.isCompleted).map(\.id)
         completedIDs.forEach { NotificationService.cancelNotification(for: $0) }
