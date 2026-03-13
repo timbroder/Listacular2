@@ -3,7 +3,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(DocumentStore.self) private var store
-    @State private var syncFolderName = "Listacular"
+    @State private var syncFolderName = ""
     @State private var isLinked = false
     @State private var isSyncing = false
     @State private var lastSyncMessage: String?
@@ -15,7 +15,7 @@ struct SettingsView: View {
                     Label("Connected", systemImage: "checkmark.circle.fill")
                         .foregroundStyle(.green)
 
-                    TextField("Sync Folder", text: $syncFolderName)
+                    TextField("Subfolder (leave empty for root)", text: $syncFolderName)
 
                     Button {
                         Task { await performSync() }

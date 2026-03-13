@@ -3,11 +3,13 @@ import UIKit
 @preconcurrency import SwiftyDropbox
 
 /// Manages bidirectional sync between local files and a Dropbox folder.
-/// Configurable sync folder name (default: "Listacular").
+/// For App Folder apps, use empty string to sync from the app's root folder.
 @MainActor
 final class DropboxSyncService {
-    var syncFolderName: String = "Listacular"
-    private var remotePath: String { "/\(syncFolderName)" }
+    var syncFolderName: String = ""
+    private var remotePath: String {
+        syncFolderName.isEmpty ? "" : "/\(syncFolderName)"
+    }
 
     private var client: DropboxClient? {
         DropboxClientsManager.authorizedClient
