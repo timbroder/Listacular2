@@ -17,7 +17,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .bottomBar) {
                         HStack {
                             NavigationLink(value: SidebarDestination.overview) {
-                                Label("Overview", systemImage: "house")
+                                Label("Overview", systemImage: "calendar")
                             }
                             NavigationLink(value: SidebarDestination.search) {
                                 Label("Search", systemImage: "magnifyingglass")
