@@ -44,6 +44,9 @@ struct DocumentListView: View {
                 }
             }
         }
+        .refreshable {
+            await store.loadFromDisk()
+        }
         .navigationTitle("Lists")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
