@@ -60,6 +60,9 @@ targets:
           - CFBundleURLSchemes:
               - "db-5clrcj0hdm1e2l2"
             CFBundleURLName: "Dropbox"
+        LSApplicationQueriesSchemes:
+          - dbapi-2
+          - dbapi-8-emm
   ListacularTests:
     type: bundle.unit-test
     platform: iOS
