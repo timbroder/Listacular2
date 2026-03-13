@@ -63,7 +63,10 @@ struct SettingsView: View {
 
     private func linkDropbox() {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let controller = scene.windows.first?.rootViewController else { return }
+              var controller = scene.windows.first?.rootViewController else { return }
+        while let presented = controller.presentedViewController {
+            controller = presented
+        }
         DropboxSyncService.authorize(from: controller)
     }
 
