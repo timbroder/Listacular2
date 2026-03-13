@@ -58,7 +58,7 @@ targets:
               - "listacular"
             CFBundleURLName: "Listacular"
           - CFBundleURLSchemes:
-              - "db-5clrcj0hdm1e2l2"
+              - "db-yz34wmzqt12u3ko"
             CFBundleURLName: "Dropbox"
         LSApplicationQueriesSchemes:
           - dbapi-2
