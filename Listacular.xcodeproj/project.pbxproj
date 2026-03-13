@@ -44,6 +44,7 @@
 		8B157690001A66E1B4919E0B /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29704DD4BCEC889A188B28 /* ImportView.swift */; };
 		8B44C3B3D0657BB9C7329801 /* testBullet.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE204D8FBC304649A95F3C /* testBullet.1.png */; };
 		9191762883E0C5955836EE7B /* DocumentStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B554D81F98346331F781EC /* DocumentStoreTests.swift */; };
+		99B0865500B2B8D5F7D4F640 /* DropboxFolderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039566426F22967430EF982 /* DropboxFolderPicker.swift */; };
 		A289A8A5359E73A0F0B8ED4F /* ListTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405DDA1400D627C9BF2B6C68 /* ListTemplateTests.swift */; };
 		AFEA9B441B7A0233BD284A9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6594DEF2F95A517BB16FCA55 /* SettingsView.swift */; };
 		B084F59701B0B3549C357D3C /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB24E05FD9095E0D3495DA1 /* IntegrationTests.swift */; };
@@ -139,6 +140,7 @@
 		C5B554D81F98346331F781EC /* DocumentStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStoreTests.swift; sourceTree = "<group>"; };
 		C869CB848DF3F917E2CA1CD9 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		CAB1D7B460AC5B4FF0AA7AAF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D039566426F22967430EF982 /* DropboxFolderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxFolderPicker.swift; sourceTree = "<group>"; };
 		D62010829F38E3B757F58A16 /* testIndentLevel2.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testIndentLevel2.1.png; sourceTree = "<group>"; };
 		D70841DFFF8F153723BB9FB3 /* testNewDocumentSheet.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testNewDocumentSheet.1.png; sourceTree = "<group>"; };
 		D89FA2D7C80C5B71BD8A1E60 /* testRawTextMode.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testRawTextMode.1.png; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			children = (
 				30591C9B66623070C41D3EC1 /* DocumentEditorView.swift */,
 				89231A96F77ADBA43F46B807 /* DocumentListView.swift */,
+				D039566426F22967430EF982 /* DropboxFolderPicker.swift */,
 				75D84E736350667F69D5FDEF /* DueDatePicker.swift */,
 				B9F9C89897E4D2718A8656A5 /* HomeOverviewView.swift */,
 				AA29704DD4BCEC889A188B28 /* ImportView.swift */,
@@ -517,6 +520,7 @@
 				ED113054BDE94748D0AAD30B /* DocumentEditorView.swift in Sources */,
 				C39E07B28D12CFC2FB189FE4 /* DocumentListView.swift in Sources */,
 				CEA0A40A36C5931E678BA770 /* DocumentStore.swift in Sources */,
+				99B0865500B2B8D5F7D4F640 /* DropboxFolderPicker.swift in Sources */,
 				32E7ED8DBF1637E824F69D78 /* DropboxSyncService.swift in Sources */,
 				180015513B7A2F7BD14C4F0D /* DueDatePicker.swift in Sources */,
 				2E2780683CC90DB1895E49CF /* FileFormat.swift in Sources */,
@@ -628,7 +632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				INFOPLIST_FILE = Listacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -665,7 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				INFOPLIST_FILE = Listacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

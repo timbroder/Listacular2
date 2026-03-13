@@ -7,6 +7,7 @@ struct SettingsView: View {
     @State private var isLinked = false
     @State private var isSyncing = false
     @State private var lastSyncMessage: String?
+    @State private var showFolderPicker = false
 
     var body: some View {
         Form {
@@ -15,7 +16,20 @@ struct SettingsView: View {
                     Label("Connected", systemImage: "checkmark.circle.fill")
                         .foregroundStyle(.green)
 
-                    TextField("Subfolder (leave empty for root)", text: $syncFolderName)
+                    Button {
+                        showFolderPicker = true
+                    } label: {
+                        HStack {
+                            Text("Sync Folder")
+                            Spacer()
+                            Text(syncFolderName.isEmpty ? "Root" : (syncFolderName as NSString).lastPathComponent)
+                                .foregroundStyle(.secondary)
+                            Image(systemName: "chevron.right")
+                                .font(.caption)
+                                .foregroundStyle(.tertiary)
+                        }
+                    }
+                    .foregroundStyle(.primary)
 
                     Button {
                         Task { await performSync() }
@@ -58,6 +72,9 @@ struct SettingsView: View {
         .navigationTitle("Settings")
         .onAppear {
             isLinked = DropboxClientsManager.authorizedClient != nil
+        }
+        .sheet(isPresented: $showFolderPicker) {
+            DropboxFolderPicker(selectedPath: $syncFolderName)
         }
     }
 

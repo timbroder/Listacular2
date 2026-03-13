@@ -8,7 +8,9 @@ import UIKit
 final class DropboxSyncService {
     var syncFolderName: String = ""
     private var remotePath: String {
-        syncFolderName.isEmpty ? "" : "/\(syncFolderName)"
+        if syncFolderName.isEmpty { return "" }
+        if syncFolderName.hasPrefix("/") { return syncFolderName }
+        return "/\(syncFolderName)"
     }
 
     private var client: DropboxClient? {
@@ -42,6 +44,34 @@ final class DropboxSyncService {
 
     static func unlinkClient() {
         DropboxClientsManager.unlinkClients()
+    }
+
+    // MARK: - List Folders
+
+    func listFolders(at path: String) async throws -> [DropboxFolder] {
+        guard let client else { throw SyncError.notLinked }
+
+        var folders: [DropboxFolder] = []
+        let response = try await client.files.listFolder(path: path).response()
+
+        folders += response.entries.compactMap { entry -> DropboxFolder? in
+            guard let folder = entry as? Files.FolderMetadata else { return nil }
+            return DropboxFolder(name: folder.name, pathDisplay: folder.pathDisplay ?? "/\(folder.name)")
+        }
+
+        var cursor = response.cursor
+        var hasMore = response.hasMore
+        while hasMore {
+            let continued = try await client.files.listFolderContinue(cursor: cursor).response()
+            folders += continued.entries.compactMap { entry -> DropboxFolder? in
+                guard let folder = entry as? Files.FolderMetadata else { return nil }
+                return DropboxFolder(name: folder.name, pathDisplay: folder.pathDisplay ?? "/\(folder.name)")
+            }
+            cursor = continued.cursor
+            hasMore = continued.hasMore
+        }
+
+        return folders.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
     }
 
     // MARK: - List Remote Files
@@ -133,6 +163,12 @@ final class DropboxSyncService {
 }
 
 // MARK: - Supporting Types
+
+struct DropboxFolder: Identifiable, Hashable, Sendable {
+    let name: String
+    let pathDisplay: String
+    var id: String { pathDisplay }
+}
 
 struct DropboxRemoteFile: Sendable {
     let name: String
