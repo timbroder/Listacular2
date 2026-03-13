@@ -48,13 +48,12 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         ITSAppUsesNonExemptEncryption: false
+        NSPhotoLibraryUsageDescription: "Listacular may need access to your photo library."
         CFBundleURLTypes:
-          - CFBundleURLSchemes:
-              - "db-DROPBOX_APP_KEY"
-            CFBundleURLName: "Dropbox"
           - CFBundleURLSchemes:
               - "listacular"
             CFBundleURLName: "Listacular"
