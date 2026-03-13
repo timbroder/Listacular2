@@ -30,6 +30,14 @@
 				<string>listacular</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>Dropbox</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>db-5clrcj0hdm1e2l2</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>

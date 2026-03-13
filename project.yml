@@ -57,6 +57,9 @@ targets:
           - CFBundleURLSchemes:
               - "listacular"
             CFBundleURLName: "Listacular"
+          - CFBundleURLSchemes:
+              - "db-5clrcj0hdm1e2l2"
+            CFBundleURLName: "Dropbox"
   ListacularTests:
     type: bundle.unit-test
     platform: iOS

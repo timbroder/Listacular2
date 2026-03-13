@@ -5,6 +5,10 @@ import SwiftUI
 struct ListacularApp: App {
     @State private var store = DocumentStore()
 
+    init() {
+        DropboxClientsManager.setupWithAppKey("5clrcj0hdm1e2l2")
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
