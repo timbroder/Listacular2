@@ -3,7 +3,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(DocumentStore.self) private var store
-    @State private var syncFolderName = ""
+    @AppStorage("syncFolderName") private var syncFolderName = ""
+    @Environment(\.scenePhase) private var scenePhase
     @State private var isLinked = false
     @State private var isSyncing = false
     @State private var lastSyncMessage: String?
@@ -72,6 +73,11 @@ struct SettingsView: View {
         .navigationTitle("Settings")
         .onAppear {
             isLinked = DropboxClientsManager.authorizedClient != nil
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                isLinked = DropboxClientsManager.authorizedClient != nil
+            }
         }
         .sheet(isPresented: $showFolderPicker) {
             DropboxFolderPicker(selectedPath: $syncFolderName)
