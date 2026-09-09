@@ -426,7 +426,6 @@
 				};
 			};
 			buildConfigurationList = A508D3F4F9650452EB44A69F /* Build configuration list for PBXProject "Listacular" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -440,12 +439,13 @@
 				9917311FA173BEF1DDBC4AEC /* XCRemoteSwiftPackageReference "SwiftyDropbox" */,
 			);
 			preferredProjectObjectVersion = 77;
+			productRefGroup = 952FE99F269937E8C722DA50 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				540F840263F0D22A73695F16 /* Listacular */,
-				6E38F7AA0409480E7C898B3A /* ListacularSnapshotTests */,
 				86BF3CF1A6F5AD6FD27198D0 /* ListacularTests */,
+				6E38F7AA0409480E7C898B3A /* ListacularSnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -632,7 +632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				INFOPLIST_FILE = Listacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,7 +669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				INFOPLIST_FILE = Listacular/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
